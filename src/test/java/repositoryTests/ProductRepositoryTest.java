@@ -50,7 +50,15 @@ public class ProductRepositoryTest {
 
 	@Test
 	public void selectProductTest() {
-		Product productTestSelect = productJpaRepository.select(product.getCode());
+		Product productTestSelect = productJpaRepository.select(product.getId());
+		assertNotNull(productTestSelect);
+		assertNotNull(productTestSelect.getId());
+		assertEquals(productTestSelect, product);
+	}
+	
+	@Test
+	public void selectProductByCodeTest() {
+		Product productTestSelect = productJpaRepository.selectByCode(product.getCode());
 		assertNotNull(productTestSelect);
 		assertNotNull(productTestSelect.getId());
 		assertEquals(productTestSelect, product);

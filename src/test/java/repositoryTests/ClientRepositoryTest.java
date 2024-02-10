@@ -55,7 +55,19 @@ public class ClientRepositoryTest {
 
 	@Test
 	public void selectClientTest() {
-		Client clientTestSelect = clienteJpaRepository.select(client.getCpf());
+		Client clientTestSelect = clienteJpaRepository.select(client.getId());
+		assertNotNull(clientTestSelect);
+		assertNotNull(clientTestSelect.getId());
+		assertEquals(clientTestSelect, client);
+		assertEquals(clientTestSelect.getAdress(), client.getAdress());
+		assertEquals(clientTestSelect.getCelNumber(), client.getCelNumber());
+		assertEquals(clientTestSelect.getCpf(), client.getCpf());
+		assertEquals(clientTestSelect.getName(), client.getName());
+	}
+	
+	@Test
+	public void selectClientByCpfTest() {
+		Client clientTestSelect = clienteJpaRepository.selectByCpf(client.getCpf());
 		assertNotNull(clientTestSelect);
 		assertNotNull(clientTestSelect.getId());
 		assertEquals(clientTestSelect, client);

@@ -50,11 +50,20 @@ public class ClientServiceTest {
 	
 	@Test
 	public void getClientTest() {
-		Client clientDB = clientService.get(client.getCpf());
+		Client clientDB = clientService.get(client.getId());
 		assertNotNull(clientDB);
 		assertNotNull(clientDB.getId());
 		assertEquals(clientDB, client);
 	}
+	
+	@Test
+	public void getClientByCpfTest() {
+		Client clientDB = clientService.getByCpf(client.getCpf());
+		assertNotNull(clientDB);
+		assertNotNull(clientDB.getId());
+		assertEquals(clientDB, client);
+	}
+	
 	
 	@Test
 	public void getAllClientTest() {
