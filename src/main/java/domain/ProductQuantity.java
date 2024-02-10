@@ -31,25 +31,25 @@ public class ProductQuantity {
 	private Double totalValue;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_sell_fk", 
-		foreignKey = @ForeignKey(name = "fk_prod_qtd_sell"), 
+	@JoinColumn(name = "id_sale_fk", 
+		foreignKey = @ForeignKey(name = "fk_prod_qtd_sale"), 
 		referencedColumnName = "id", nullable = false
 	)
-	private Sale sell;
+	private Sale sale;
 	
-	public ProductQuantity(Long id, Product product, Integer quantity, Double totalValue, Sale sell) {
+	public ProductQuantity(Long id, Product product, Integer quantity, Double totalValue, Sale sale) {
 		this.id = id;
 		this.product = product;
 		this.quantity = quantity;
 		this.totalValue = totalValue;
-		this.sell = sell;
+		this.sale = sale;
 	}
 	
-	public ProductQuantity(Product product, Integer quantity, Double totalValue, Sale sell) {
+	public ProductQuantity(Product product, Integer quantity, Double totalValue, Sale sale) {
 		this.product = product;
 		this.quantity = quantity;
 		this.totalValue = totalValue;
-		this.sell = sell;
+		this.sale = sale;
 	}
 
 	public ProductQuantity() {

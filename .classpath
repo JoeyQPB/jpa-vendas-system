@@ -8,7 +8,7 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="lib" path="C:/Users/joey_/Jars-Java/postgresql-42.7.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/joey_/Jars-Java/Hibernate-core 5/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="C:/Users/joey_/Jars-Java/Hibernate-core 5/byte-buddy-1.11.20.jar"/>

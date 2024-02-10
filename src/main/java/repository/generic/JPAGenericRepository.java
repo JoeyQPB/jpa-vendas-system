@@ -55,6 +55,14 @@ public abstract class JPAGenericRepository<T extends IPersistence, E extends Ser
 	        // executa a query
 	        TypedQuery<T> typedQuery = entityManager.createQuery(criteriaQuery);
 	        List<T> resultList = typedQuery.getResultList();
+	        
+	        
+	        // psql way
+//			StringBuilder sb = new StringBuilder();
+//			sb.append("SELECT obj FROM ");
+//			sb.append(this.persistenteClass.getSimpleName());
+//			sb.append(" obj");
+//			List<T> list = entityManager.createQuery(sb.toString(), this.persistenteClass).getResultList();
 			
 	        entityManager.getTransaction().commit();
 		    return resultList;

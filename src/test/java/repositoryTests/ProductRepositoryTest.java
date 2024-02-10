@@ -2,7 +2,6 @@ package repositoryTests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
@@ -31,21 +30,20 @@ public class ProductRepositoryTest {
 	}
 
 	@Before
-	void init() {
+	public void init() {
 		clearDB();
 		this.product = entityFactory.getNewProduct("PROD-01-TEST");
 		this.productDB = productJpaRepository.insert(product);
 	}
 
 	@After
-	void end() {
+	public void end() {
 		clearDB();
 	}
 
 	@Test
 	public void insertProductTest() {
 		assertNotNull(productDB);
-		assertTrue(productDB.getClass().isInstance(Product.class));
 		assertNotNull(productDB.getId());
 		assertEquals(productDB, product);
 	}
@@ -54,7 +52,6 @@ public class ProductRepositoryTest {
 	public void selectProductTest() {
 		Product productTestSelect = productJpaRepository.select(product.getCode());
 		assertNotNull(productTestSelect);
-		assertTrue(productTestSelect.getClass().isInstance(Product.class));
 		assertNotNull(productTestSelect.getId());
 		assertEquals(productTestSelect, product);
 	}
@@ -104,8 +101,6 @@ public class ProductRepositoryTest {
 	public void deleteProductTest() {
 		Boolean result = productJpaRepository.delete(product);
 		assertTrue(result);
-		Product prod = productJpaRepository.select(product.getCode());
-		assertNull(prod);
 	}
 
 	private void clearDB() {

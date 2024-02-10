@@ -31,21 +31,20 @@ public class ClientRepositoryTest {
 	}
 
 	@Before
-	void init() {
+	public void init() {
 		clearDB();
 		this.client = entityFactory.getNewClient(90909090L);
 		this.clientDB = clienteJpaRepository.insert(client);
 	}
 
 	@After
-	void end() {
+	public void end() {
 		clearDB();
 	}
 
 	@Test
 	public void insertClientTest() {
 		assertNotNull(clientDB);
-		assertTrue(clientDB.getClass().isInstance(Client.class));
 		assertNotNull(clientDB.getId());
 		assertEquals(clientDB, client);
 		assertEquals(clientDB.getAdress(), client.getAdress());
@@ -58,7 +57,6 @@ public class ClientRepositoryTest {
 	public void selectClientTest() {
 		Client clientTestSelect = clienteJpaRepository.select(client.getCpf());
 		assertNotNull(clientTestSelect);
-		assertTrue(clientTestSelect.getClass().isInstance(Client.class));
 		assertNotNull(clientTestSelect.getId());
 		assertEquals(clientTestSelect, client);
 		assertEquals(clientTestSelect.getAdress(), client.getAdress());
@@ -101,7 +99,6 @@ public class ClientRepositoryTest {
 		Client clientUpdated = clienteJpaRepository.update(clientDB);
 		
 		assertNotNull(clientUpdated);
-		assertTrue(clientUpdated.getClass().isInstance(Client.class));
 		assertNotNull(clientUpdated.getId());
 		assertEquals(clientUpdated, client);
 		assertEquals(clientUpdated.getAdress(), client.getAdress());

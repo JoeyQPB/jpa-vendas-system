@@ -105,7 +105,4 @@ public class Client implements IPersistence {
 	public void setCreatedAt(Instant createdAt) {
 		this.createdAt = createdAt;
 	} 
-
-
-
 }

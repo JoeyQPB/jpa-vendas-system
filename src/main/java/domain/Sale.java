@@ -48,12 +48,12 @@ public class Sale implements IPersistence {
 
 	@ManyToOne
 	@JoinColumn(name = "id_cliente_fk", 
-		foreignKey = @ForeignKey(name = "fk_venda_cliente"), 
+		foreignKey = @ForeignKey(name = "fk_sale_cliente"), 
 		referencedColumnName = "id", nullable = false
 	)
 	private Client client;
 
-	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
 	private Set<ProductQuantity> products;
 
 	@Column(name = "total", nullable = false)

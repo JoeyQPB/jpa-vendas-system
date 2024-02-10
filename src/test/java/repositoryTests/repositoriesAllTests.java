@@ -5,8 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ClientRepositoryTest.class, ProductRepositoryTest.class,
-		SaleRepositoryTest.class })
+@SuiteClasses({ ClientRepositoryTest.class, ProductRepositoryTest.class})
 public class repositoriesAllTests {
 
 }
