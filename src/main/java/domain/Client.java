@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import annotations.UniqueValue;
 import domain.interfaces.IPersistence;
 
 @Entity
@@ -23,6 +24,7 @@ public class Client implements IPersistence {
 	private Long id;
 	
 	@Column(name = "cpf", nullable = false, unique = true)
+	@UniqueValue()
 	private Long cpf;
 
 	@Column(name = "name", nullable = false)

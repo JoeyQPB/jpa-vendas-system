@@ -39,7 +39,9 @@ public interface IGenericService <T extends IPersistence, E extends Serializable
      * @return
      * @throws DAOException 
      */
-    public T get(E value) throws RepositoryException;
+    public T get(Long value) throws RepositoryException;
+    
+    public T getByUniqueValue(E value) throws RepositoryException;
 
     /**
      * Método que irá retornar todos os registros do banco de dados de uma determinado dado ou tabela

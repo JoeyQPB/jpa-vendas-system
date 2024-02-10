@@ -21,8 +21,13 @@ public abstract class GenericService<T extends IPersistence, E extends Serializa
 	}
 	
 	@Override
-	public T get(E value) throws RepositoryException {
+	public T get(Long value) throws RepositoryException {
 		return repository.select(value);
+	}
+	
+	@Override
+	public T getByUniqueValue(E value) throws RepositoryException {
+		return repository.selectByUniqueValue(value);
 	}
 
 	@Override
@@ -38,8 +43,7 @@ public abstract class GenericService<T extends IPersistence, E extends Serializa
 	
 	@Override
 	public Boolean delete(E value) throws RepositoryException {
-		T entity = this.get(value);
+		T entity = this.getByUniqueValue(value);
 		return repository.delete(entity);
 	}
-
 }

@@ -67,7 +67,7 @@ public class ClientRepositoryTest {
 	
 	@Test
 	public void selectClientByCpfTest() {
-		Client clientTestSelect = clienteJpaRepository.selectByCpf(client.getCpf());
+		Client clientTestSelect = clienteJpaRepository.selectByUniqueValue(client.getCpf());
 		assertNotNull(clientTestSelect);
 		assertNotNull(clientTestSelect.getId());
 		assertEquals(clientTestSelect, client);

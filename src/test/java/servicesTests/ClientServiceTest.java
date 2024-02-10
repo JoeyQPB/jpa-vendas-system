@@ -57,8 +57,8 @@ public class ClientServiceTest {
 	}
 	
 	@Test
-	public void getClientByCpfTest() {
-		Client clientDB = clientService.getByCpf(client.getCpf());
+	public void getByUniqueValue() {
+		Client clientDB = clientService.getByUniqueValue(client.getCpf());
 		assertNotNull(clientDB);
 		assertNotNull(clientDB.getId());
 		assertEquals(clientDB, client);

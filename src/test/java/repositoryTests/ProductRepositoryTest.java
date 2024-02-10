@@ -58,7 +58,7 @@ public class ProductRepositoryTest {
 	
 	@Test
 	public void selectProductByCodeTest() {
-		Product productTestSelect = productJpaRepository.selectByCode(product.getCode());
+		Product productTestSelect = productJpaRepository.selectByUniqueValue(product.getCode());
 		assertNotNull(productTestSelect);
 		assertNotNull(productTestSelect.getId());
 		assertEquals(productTestSelect, product);

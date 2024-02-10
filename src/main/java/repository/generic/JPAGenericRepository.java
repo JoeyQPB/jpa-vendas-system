@@ -1,6 +1,7 @@
 package repository.generic;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import annotations.UniqueValue;
 import config.ConnectionJPA;
 import domain.interfaces.IPersistence;
 import exceptions.RepositoryException;
@@ -31,10 +33,30 @@ public abstract class JPAGenericRepository<T extends IPersistence, E extends Ser
 	}
 
 	@Override
-	public T select(E value) {
+	public T select(Long value) {
 		EntityManager entityManager = ConnectionJPA.getEntityManager();
 		entityManager.getTransaction().begin();
 		T entity = entityManager.find(classPersistence, value);
+		entityManager.getTransaction().commit();
+		return entity;
+	}
+	
+	@Override
+	public T selectByUniqueValue(E value) {
+		String fieldName = "";
+		Field[] declaredFields = classPersistence.getDeclaredFields();
+		for (Field field : declaredFields) {
+			if(field.isAnnotationPresent(UniqueValue.class)) {
+				fieldName = field.getName();
+				break;
+			}
+		}
+		EntityManager entityManager = ConnectionJPA.getEntityManager();
+		entityManager.getTransaction().begin();
+        TypedQuery<T> query = entityManager.createQuery(
+                "SELECT x FROM " + classPersistence.getSimpleName() + " x WHERE x." + fieldName + " = :" + fieldName, classPersistence);
+        query.setParameter(fieldName, value);
+        T entity = query.getSingleResult();
 		entityManager.getTransaction().commit();
 		return entity;
 	}

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import annotations.UniqueValue;
 import domain.interfaces.IPersistence;
 
 @Entity
@@ -22,6 +23,7 @@ public class Product implements IPersistence {
 	private Long id;
 
 	@Column(name = "code", nullable = false, unique = true)
+	@UniqueValue()
 	private String code;
 
 	@Column(name = "name", nullable = false)

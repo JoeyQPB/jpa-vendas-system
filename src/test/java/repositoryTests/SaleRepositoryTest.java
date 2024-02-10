@@ -58,7 +58,7 @@ public class SaleRepositoryTest {
 	@Test
 	public void selectSaleTest() {
 		Sale saleBD = createSale("SALE-01-TEST");		
-		Sale saleSearched = saleJpaRepository.select(saleBD.getCode());
+		Sale saleSearched = saleJpaRepository.select(saleBD.getId());
 		assertNotNull(saleSearched);
 		assertEquals(saleSearched.getCode(), saleBD.getCode());
 	}
@@ -77,7 +77,7 @@ public class SaleRepositoryTest {
 
 		saleJpaRepository.cancelSale(sale);
 
-		Sale saleSelected = saleJpaRepository.select(saleCode);
+		Sale saleSelected = saleJpaRepository.select(sale.getId());
 		assertEquals(saleCode, saleSelected.getCode());
 		assertEquals(Status.CANCELADA, saleSelected.getStatus());
 	}
@@ -87,7 +87,7 @@ public class SaleRepositoryTest {
 		String saleCode = "SALE-01-TEST";
 		Sale sale = createSale(saleCode);
 
-		Sale saleSelected = saleJpaRepository.select(saleCode);
+		Sale saleSelected = saleJpaRepository.select(sale.getId());
 		assertEquals(sale, saleSelected);
 		saleSelected.adicionarProduto(product, 1);
 		saleSelected.adicionarProduto(product, 1);
@@ -101,12 +101,12 @@ public class SaleRepositoryTest {
 	@Test
 	public void adicionarMaisproductsDiferentes() {
 		String saleCode = "SALE-01-TEST";
-		createSale(saleCode);
+		Sale sale = createSale(saleCode);
 
 		Product prod = createProduct("PROD-01-TEST_SALE");
 		assertNotNull(prod);
 
-		Sale SaleConsultada = saleJpaRepository.select(saleCode);
+		Sale SaleConsultada = saleJpaRepository.select(sale.getId());
 		SaleConsultada.adicionarProduto(prod, 1);
 
 		assertTrue(SaleConsultada.getQuantidadeTotalproducts() == 2);
@@ -126,12 +126,12 @@ public class SaleRepositoryTest {
 	@Test
 	public void removerproduct(){
 		String saleCode = "SALE-01-TEST";
-		createSale(saleCode);
+		Sale sale = createSale(saleCode);
 
 		Product prod = createProduct("PROD-01-TEST_SALE");
 		assertNotNull(prod);
 
-		Sale SaleConsultada = saleJpaRepository.select(saleCode);
+		Sale SaleConsultada = saleJpaRepository.select(sale.getId());
 		SaleConsultada.adicionarProduto(prod, 1);
 		
 		
@@ -145,13 +145,13 @@ public class SaleRepositoryTest {
 	@Test
 	public void removerTodosproducts() {
 		String saleCode = "SALE-01-TEST";
-		createSale(saleCode);
+		Sale sale = createSale(saleCode);
 
 		Product prod = createProduct("PROD-01-TEST_SALE");
 		assertNotNull(prod);
 
 
-		Sale SaleConsultada = saleJpaRepository.select(saleCode);
+		Sale SaleConsultada = saleJpaRepository.select(sale.getId());
 		SaleConsultada.adicionarProduto(prod, 1);
 		
 		
@@ -170,7 +170,7 @@ public class SaleRepositoryTest {
 		
 		saleJpaRepository.finalizeSale(sale);
 
-		Sale SaleConsultada = saleJpaRepository.select(saleCode);
+		Sale SaleConsultada = saleJpaRepository.select(sale.getId());
 		assertEquals(sale.getCode(), SaleConsultada.getCode());
 		assertEquals(Status.CONCLUIDA, SaleConsultada.getStatus());
 	}
@@ -181,7 +181,7 @@ public class SaleRepositoryTest {
 		Sale sale = createSale(saleCode);
 
 		saleJpaRepository.finalizeSale(sale);
-		Sale SaleConsultada = saleJpaRepository.select(saleCode);
+		Sale SaleConsultada = saleJpaRepository.select(sale.getId());
 		assertEquals(sale.getCode(), SaleConsultada.getCode());
 		assertEquals(Status.CONCLUIDA, SaleConsultada.getStatus());
 
